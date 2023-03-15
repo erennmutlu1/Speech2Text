@@ -5,83 +5,7 @@
     <meta charset="UTF-8">
     <title>Speech to Text</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        h1 {
-            margin-bottom: 2rem;
-        }
-
-        footer {
-            background-color: #fff;
-            padding: 1rem;
-            text-align: center;
-            margin-top: 10rem;
-        }
-
-        #start-btn,
-        #stop-btn {
-            padding: 1rem;
-            border-radius: 1rem;
-            border: none;
-            background-color: #00bfff;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-bottom: 2rem;
-        }
-
-        #stop-btn {
-            background-color: #ff6347;
-        }
-
-        #result {
-            width: 80%;
-            margin: 0 auto;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-            text-align: left;
-            max-height: 100px;
-            overflow: auto;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 0.5rem;
-            background-color: #f5f5f5;
-            resize: vertical;
-        }
-
-        #copy-btn {
-            padding: 1rem;
-            border-radius: 1rem;
-            border: none;
-            background-color: #4CAF50;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-bottom: 2rem;
-        }
-
-        #error {
-            color: red;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 600px) {
-            #result {
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 400px) {
-            #result {
-                width: 100%;
-            }
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -92,77 +16,13 @@
     <div id="error"></div>
     <button id="copy-btn">Kopyala</button>
 
-    <script>
-        const startBtn = document.querySelector("#start-btn");
-        const stopBtn = document.querySelector("#stop-btn");
-        const copyBtn = document.querySelector("#copy-btn");
-        const resultDiv = document.querySelector("#result");
-        const errorDiv = document.querySelector("#error");
-        const recognition = new webkitSpeechRecognition();
+    <script src="javascript/script.js"></script>
 
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang = "tr-TR";
-
-        startBtn.addEventListener("click", () => {
-            recognition.start();
-            startBtn.disabled = true;
-            stopBtn.disabled = false;
-        });
-
-        stopBtn.addEventListener("click", () => {
-            recognition.stop();
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-        });
-        // Display the converted text from speech 
-        recognition.addEventListener("result", (event) => {
-            const transcript = Array.from(event.results)
-                .map((result) => result[0])
-                .map((result) => result.transcript)
-                .join("");
-
-            resultDiv.innerHTML = transcript;
-        });
-
-        //If microphone permission is denied gives error message
-        recognition.addEventListener("error", (event) => {
-            errorDiv.innerHTML = `Error: ${event.error}`;
-        });
-
-        copyBtn.textContent = "Kopyala";
-        copyBtn.setAttribute("id", "copy-btn");
-
-        // Append copy button to DOM
-        resultDiv.parentNode.insertBefore(copyBtn, resultDiv.nextSibling);
-
-        // Add click event listener to copy button
-        copyBtn.addEventListener("click", () => {
-            // Create a temporary textarea to copy text from
-            const tempTextArea = document.createElement("textarea");
-            tempTextArea.value = resultDiv.textContent;
-            document.body.appendChild(tempTextArea);
-
-            // Select and copy the text from the temporary textarea
-            tempTextArea.select();
-            document.execCommand("copy");
-
-            // Remove the temporary textarea
-            document.body.removeChild(tempTextArea);
-
-            // Display a message to the user that the text has been copied
-            copyBtn.textContent = "Kopyalandı!";
-            setTimeout(() => {
-                copyBtn.textContent = "Kopyala";
-            }, 2000);
-        });
-    </script>
     <footer>
         <p>Designed by Eren Mutlu - &copy; <span id="currentYear"></span></p>
     </footer>
 
     <script>
-        // Update the current year dynamically
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
 

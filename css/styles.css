@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+footer {
+    background-color: #fff;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 15rem;
+}
+
+#start-btn,
+#stop-btn {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #00bfff;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+#stop-btn {
+    background-color: #ff6347;
+}
+
+#result {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    text-align: left;
+    max-height: 100px;
+    overflow: auto;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #f5f5f5;
+    resize: vertical;
+}
+
+#copy-btn {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+#error {
+    color: red;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    #result {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    #result {
+        width: 100%;
+    }
+}
